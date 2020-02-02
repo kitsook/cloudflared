@@ -133,6 +133,7 @@ func configureClient(hostname string) *http.Client {
 		TLSClientConfig:    tlsConfig,
 		DisableCompression: true,
 		MaxIdleConns:       1,
+		MaxConnsPerHost:    2,
 		Proxy:              http.ProxyFromEnvironment,
 	}
 	_ = http2.ConfigureTransport(transport)
