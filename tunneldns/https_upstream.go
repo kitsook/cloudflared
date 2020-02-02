@@ -36,10 +36,11 @@ func NewUpstreamHTTPS(endpoint string) (Upstream, error) {
 	// Update TLS and HTTP client configuration
 	tls := &tls.Config{ServerName: u.Hostname()}
 	transport := &http.Transport{
-		TLSClientConfig:    tls,
-		DisableCompression: true,
-		MaxIdleConns:       1,
-		Proxy:              http.ProxyFromEnvironment,
+		TLSClientConfig:     tls,
+		DisableCompression:  true,
+		MaxIdleConns:        1,
+		MaxConnsPerHost:     2,
+		Proxy:               http.ProxyFromEnvironment,
 	}
 	http2.ConfigureTransport(transport)
 
